@@ -8,7 +8,7 @@ import time
 from sklearn.metrics import mean_squared_error
 import tensorflow as tf
 from sklearn import linear_model, preprocessing, cross_validation, svm
-
+import sys
 
 def weight_variable(shape):
     initial = tf.truncated_normal(shape,stddev=0.1)
@@ -71,7 +71,7 @@ def DefinePlaceHolder(nInput, nOutput):
 
 def InitiateModel():
     global sess, cross_entropy, train_step
-    #y_ = training data , y = predection data 
+    #y_ = training data , y = predection data
     cross_entropy = tf.reduce_mean(tf.reduce_sum(tf.square(y - y_)))
     #train_step = tf.train.GradientDescentOptimizer(0.01).minimize(cross_entropy)
     train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
@@ -90,6 +90,7 @@ if __name__=="__main__":
     DefinePlaceHolder(nInput, nOutput)
     DetermineNeuron(nInput, nOutput)
     saver = tf.train.Saver()
+    start=time.time()
 
     with tf.Session() as sess:  # your session object
         InitiateModel()
@@ -99,6 +100,9 @@ if __name__=="__main__":
         # Check the values of the variables
         print("W_fc1 : %s" % W_fc1.eval())
         input_data_np_KID=MakeInputData(df_KID1_ml,"KID1")
-        output_data_np_KID=MakeOutputData(df_KID1_ml, "KID1")
-        NN_predict=sess.run(y, feed_dict={x:input_data_np_KID})
-        #print("MSE:", mean_squared_error(output_data_np_KID, NN_predict))
+        current_state_server=input_data_np_KID[1:3, :]
+        print("Current states: ", current_state_server)
+        NN_predict=sess.run(y, feed_dict={x:current_state_server})
+        print("Neural network Future Prediction values:", NN_predict[:, 0])
+
+    print("Prediction time: ", time.time()-start)
