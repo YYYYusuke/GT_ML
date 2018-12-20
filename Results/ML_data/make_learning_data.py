@@ -1,3 +1,6 @@
+# This script it written for reading original data from the database storing pkl files and convert it 
+# into the data which can be used as machine learnign training data.
+
 import pandas as pd
 import numpy as np
 import os
@@ -68,7 +71,7 @@ if __name__=='__main__':
     os.chdir(path+Folder_name)
     os.makedirs("ml_data")
     KID1_ml_data.to_pickle(path+Folder_name+"/ml_data/df_KID1_ml.pkl")
-    KID3_ml_data.to_pickle(path+Folder_name+"/ml_data/df_KID3_ml.pkl")
+    KD3_ml_data.to_pickle(path+Folder_name+"/ml_data/df_KID3_ml.pkl")
     KID7_ml_data.to_pickle(path+Folder_name+"/ml_data/df_KID7_ml.pkl")
     KID9_ml_data.to_pickle(path+Folder_name+"/ml_data/df_KID9_ml.pkl")
     KID11_ml_data.to_pickle(path+Folder_name+"/ml_data/df_KID11_ml.pkl")

@@ -169,7 +169,7 @@ if __name__=="__main__":
         print("Model restored.")
         # Check the values of the variables
         print("W_fc1 : %s" % W_fc1.eval())
-        print("W_fc2 : %s" % W_fc2.eval())
+        #print("W_fc2 : %s" % W_fc2.eval())
         input_data_np_KID=MakeInputData(df_KID1_ml,"KID1")
         output_data_np_KID=MakeOutputData(df_KID1_ml, "KID1")
         NN_predict=sess.run(y, feed_dict={x:input_data_np_KID, y_: output_data_np_KID})    

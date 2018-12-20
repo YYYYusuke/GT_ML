@@ -105,4 +105,4 @@ if __name__=="__main__":
         NN_predict=sess.run(y, feed_dict={x:current_state_server})
         print("Neural network Future Prediction values:", NN_predict[:, 0])
 
-    print("Prediction time: ", time.time()-start)
+    printaa ("Prediction time: ", time.time()-start)
